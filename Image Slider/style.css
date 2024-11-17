@@ -39,7 +39,9 @@ header a:hover{
     background: #14ff72cb;
     border-radius: 2px;
 }
-
+.description {
+    min-height: 120px;
+}
 
 /* slider section  */
 
@@ -109,10 +111,6 @@ header a:hover{
     border: 1px solid #fff;
     color: #eee;
 }
-
-
-
-
 
 /* Thumbnail Section  */
 .thumbnail{
@@ -206,8 +204,6 @@ header a:hover{
 .slider .list .item:nth-child(1) .content .buttons{
     animation-delay: 1s !important;
 }
-
-
 
 
 /* Animation for next button click */
