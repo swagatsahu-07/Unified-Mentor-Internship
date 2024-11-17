@@ -1,26 +1,32 @@
-let nextBtn = document.querySelector('.next')
-let prevBtn = document.querySelector('.prev')
+let nextBtn = document.querySelector('.next');
+let prevBtn = document.querySelector('.prev');
 
-let slider = document.querySelector('.slider')
-let sliderList = slider.querySelector('.slider .list')
-let thumbnail = document.querySelector('.thumbnail')
-let thumbnailItems = thumbnail.querySelectorAll('.item')
+let slider = document.querySelector('.slider');
+let sliderList = slider.querySelector('.slider .list');
+let thumbnail = document.querySelector('.slider .thumbnail');
+let thumbnailItems = thumbnail.querySelectorAll('.item');
 
-thumbnail.appendChild(thumbnailItems[0])
+thumbnail.appendChild(thumbnailItems[0]);
+
+// Add a variable to store the direction
+let currentDirection = "";
 
 // Function for next button
-nextBtn.onclick = function(){
-    moveSlider('next')
+nextBtn.onclick = function() {
+    moveSlider('next');
 }
+
 // Function for prev button
-prevBtn.onclick = function(){
-    moveSlider('prev')
+prevBtn.onclick = function() {
+    moveSlider('prev');
 }
 
 function moveSlider(direction) {
     let sliderItems = sliderList.querySelectorAll('.item');
     let thumbnailItems = document.querySelectorAll('.thumbnail .item');
-    slider.dataset.direction = direction; // Store direction
+   
+    currentDirection = direction; // Update direction globally
+    
     if (direction === 'next') {
         sliderList.appendChild(sliderItems[0]);
         thumbnail.appendChild(thumbnailItems[0]);
@@ -32,10 +38,11 @@ function moveSlider(direction) {
     }
 }
 
-slider.addEventListener('animationend', function () {
-    if (slider.dataset.direction === 'next') {
+slider.addEventListener('animationend', function() {
+    // Use the global currentDirection variable
+    if (currentDirection === 'next') {
         slider.classList.remove('next');
-    } else {
+    } else if (currentDirection === 'prev') {
         slider.classList.remove('prev');
     }
-}, { once: true });
+}, { once: false }); // Allow the event listener to run multiple times
